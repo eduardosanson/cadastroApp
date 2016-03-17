@@ -9,5 +9,5 @@ import com.free.commerce.to.StoreForm;
  */
 public interface LojaSerice {
 
-    CadastroResponse realizarCadastroCompleto(StoreForm storeForm);
+    StoreForm realizarCadastroCompleto(StoreForm storeForm);
 }

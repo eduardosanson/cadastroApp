@@ -34,45 +34,26 @@ public class LojaServiceImpl implements LojaSerice {
     private static final Logger logger = Logger.getLogger(LojaServiceImpl.class);
 
     @Override
-    public CadastroResponse realizarCadastroCompleto(StoreForm storeForm) {
+    public StoreForm realizarCadastroCompleto(StoreForm storeForm) {
         CadastroResponse response = new CadastroResponse();
-
         Endereco endereco = criaEndereco(storeForm);
-
         Loja loja = criarLoja(storeForm);
-
         UserLogin login = criarLogin(storeForm);
-
         loja.setEndereco(endereco);
-
         loja.setLogin(login);
 
         logger.info("Iniciando cadastro de Cliente");
 
-
-
         try {
 
-//            userRepository.save(login);
-//            enderecoRepository.save(endereco);
-
             loja = repository.save(loja);
-
-            response.setLoja(loja);
-            response.setCodigo("000");
-            response.setMensagem("Sucesso");
-
 
         }catch (Exception e){
 
             e.printStackTrace();
-            response.setLoja(null);
-            response.setCodigo("100");
-            response.setMensagem("Erro");
+
         }
-
-
-        return response;
+        return storeForm;
     }
 
     private UserLogin criarLogin(StoreForm storeForm) {
