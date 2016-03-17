@@ -13,11 +13,20 @@ public class UserLogin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "LOGIN",unique = true)
+    @Column(unique = true)
     private String login;
 
-    @Column(name = "SENHA")
+    @Column
     private String senha;
+
+    @Override
+    public String toString() {
+        return "UserLogin{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
+    }
 
     public Long getId() {
         return id;

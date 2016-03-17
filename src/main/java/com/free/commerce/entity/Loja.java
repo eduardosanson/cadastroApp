@@ -22,7 +22,7 @@ public class Loja {
     private String nomeEmpresa;
 
     @OneToOne(cascade = CascadeType.PERSIST)
-    private UserLogin login;
+    private UserLogin userLogin;
 
     @Column(nullable = false,unique = true)
     private String cnpjOuCpf;
@@ -37,8 +37,20 @@ public class Loja {
     @JoinColumn(nullable = false)
     private Endereco endereco;
 
-    @OneToOne
-    private UserLogin userLogin;
+    @Override
+    public String toString() {
+        return "Loja{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", nomeEmpresa='" + nomeEmpresa + '\'' +
+                ", userLogin=" + userLogin +
+                ", cnpjOuCpf='" + cnpjOuCpf + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", nomeJuridico='" + nomeJuridico + '\'' +
+                ", endereco=" + endereco +
+                '}';
+    }
 
     public Long getId() {
         return id;
@@ -94,14 +106,6 @@ public class Loja {
 
     public void setUserLogin(UserLogin userLogin) {
         this.userLogin = userLogin;
-    }
-
-    public UserLogin getLogin() {
-        return login;
-    }
-
-    public void setLogin(UserLogin login) {
-        this.login = login;
     }
 
     public String getEmail() {

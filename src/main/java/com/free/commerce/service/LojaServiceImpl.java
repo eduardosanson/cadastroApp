@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
  * Created by eduardosanson on 05/03/16.
  */
 @Service
-public class LojaServiceImpl implements LojaSerice {
+public class LojaServiceImpl implements LojaService {
 
     @Autowired
     private ClienteService clienteService;
@@ -40,7 +40,7 @@ public class LojaServiceImpl implements LojaSerice {
         Loja loja = criarLoja(storeForm);
         UserLogin login = criarLogin(storeForm);
         loja.setEndereco(endereco);
-        loja.setLogin(login);
+        loja.setUserLogin(login);
 
         logger.info("Iniciando cadastro de Cliente");
 
@@ -54,6 +54,15 @@ public class LojaServiceImpl implements LojaSerice {
 
         }
         return storeForm;
+    }
+
+    @Override
+    public Loja login(UserLogin userLogin) {
+        Loja loja;
+        loja = repository.recuperarLojaPeloUserLogin(userLogin);
+
+        System.out.print(loja);
+        return loja;
     }
 
     private UserLogin criarLogin(StoreForm storeForm) {
